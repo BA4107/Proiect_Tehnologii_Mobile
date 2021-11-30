@@ -29,6 +29,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper
     public MyDatabaseHelper(@Nullable Context context)
     {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        this.context = context;
     }
 
     // Methods
@@ -50,5 +51,25 @@ public class MyDatabaseHelper extends SQLiteOpenHelper
     {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(db);
+    }
+
+    public void addSongs(String title, String artist, String type, String link)
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(COLUMN_TITLE, title);
+        cv.put(COLUMN_ARTIST, artist);
+        cv.put(COLUMN_TYPE, type);
+        cv.put(COLUMN_LINK, link);
+
+        long result = db.insert(TABLE_NAME, null, cv);
+        if(result == -1)
+        {
+            Toast.makeText(context, "Failed to insert", Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            Toast.makeText(context, "Succesfully inserted", Toast.LENGTH_SHORT).show();
+        }
     }
 }
