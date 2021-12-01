@@ -2,6 +2,7 @@ package com.example.proiect_tehnologii_mobile;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
@@ -69,7 +70,64 @@ public class MyDatabaseHelper extends SQLiteOpenHelper
         }
         else
         {
-            Toast.makeText(context, "Succesfully inserted", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Successfully inserted", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public Cursor readAllData()
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM " + TABLE_NAME;
+        Cursor cursor = null;
+        if (db != null)
+        {
+            cursor = db.rawQuery(query, null);
+        }
+        return cursor;
+    }
+
+    public void updateData(String row_id, String title, String artist, String type , String link)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues cv = new ContentValues();
+        cv.put(COLUMN_TITLE, title);
+        cv.put(COLUMN_ARTIST, artist);
+        cv.put(COLUMN_TYPE, type);
+        cv.put(COLUMN_LINK, link);
+
+        long result = db.update(TABLE_NAME, cv, "_id=?", new String[]{row_id});
+
+        if(result == -1)
+        {
+            Toast.makeText(context, "Failed to update", Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            Toast.makeText(context, "Successfully updated", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void deleteOneEntry(String row_id)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        long result = db.delete(TABLE_NAME, "_id=?", new String[]{row_id});
+
+        if(result == -1)
+        {
+            Toast.makeText(context, "Failed to delete", Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            Toast.makeText(context, "Successfully deleted", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void deleteAllData()
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.execSQL("DELETE FROM " + TABLE_NAME);
     }
 }
