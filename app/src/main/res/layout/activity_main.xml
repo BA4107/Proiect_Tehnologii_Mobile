@@ -7,65 +7,62 @@
     tools:context=".MainActivity"
     android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/inpSongTitle"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="10dp"
-        android:ems="10"
-        android:hint="@string/stringSongTitle"
-        android:importantForAutofill="no"
-        android:inputType="textPersonName"
-        android:minHeight="48dp" />
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
 
-    <EditText
-        android:id="@+id/inpSongArtist"
+        <ImageButton
+            android:id="@+id/btnAllSongsActivity"
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_margin="30dp"
+            android:layout_weight="0.5"
+            android:background="@drawable/baseline_library_music_24"
+            android:contentDescription="@string/string_all_songs"
+            android:minHeight="150dp"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <ImageButton
+            android:id="@+id/btnPlaylistsActivity"
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_margin="30dp"
+            android:layout_weight="0.5"
+            android:background="@drawable/baseline_playlist_play_24"
+            android:contentDescription="@string/string_playlists"
+            android:minHeight="150dp"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginRight="10dp"
-        android:ems="10"
-        android:hint="@string/StringArtist"
-        android:importantForAutofill="no"
-        android:inputType="textPersonName"
-        android:minHeight="48dp" />
+        android:orientation="horizontal">
 
-    <EditText
-        android:id="@+id/inpSongType"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginRight="10dp"
-        android:ems="10"
-        android:hint="@string/StringSongType"
-        android:importantForAutofill="no"
-        android:inputType="textPersonName"
-        android:minHeight="48dp" />
+        <ImageButton
+            android:id="@+id/btnAddSongActivity"
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_margin="30dp"
+            android:layout_weight="0.5"
+            android:background="@drawable/baseline_add_circle_24"
+            android:contentDescription="@string/StringAddSong"
+            android:minHeight="150dp"
+            tools:ignore="SpeakableTextPresentCheck" />
 
-    <EditText
-        android:id="@+id/inpSongLink"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginRight="10dp"
-        android:ems="10"
-        android:hint="@string/StringSongLink"
-        android:importantForAutofill="no"
-        android:inputType="textPersonName"
-        android:minHeight="48dp" />
+        <ImageButton
+            android:id="@+id/btnSettingsActivity"
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_margin="30dp"
+            android:layout_weight="0.5"
+            android:background="@drawable/baseline_settings_24"
+            android:contentDescription="@string/nav_settings"
+            android:minHeight="150dp"
+            tools:ignore="SpeakableTextPresentCheck" />
 
-    <Button
-        android:id="@+id/btnAddSong"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="10dp"
-        android:text="@string/StringAddSong" />
-
+    </LinearLayout>
 </LinearLayout>

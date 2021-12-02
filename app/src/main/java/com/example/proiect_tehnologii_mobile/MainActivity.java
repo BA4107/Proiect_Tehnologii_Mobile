@@ -2,42 +2,39 @@ package com.example.proiect_tehnologii_mobile;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
+import android.widget.ImageButton;
 
-public class MainActivity extends AppCompatActivity {
-
+public class MainActivity extends AppCompatActivity
+{
     // Variables
-    EditText songTitle;
-    EditText songArtist;
-    EditText songType;
-    EditText songLink;
-    Button addSong;
+    ImageButton allSongsActivity;
+    ImageButton playlistsActivity;
+    ImageButton addSongActivity;
+    ImageButton settingsActivity;
 
     // Methods
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // findViewById
-        songTitle = findViewById(R.id.inpSongTitle);
-        songArtist =findViewById(R.id.inpSongArtist);
-        songType = findViewById(R.id.inpSongType);
-        songLink = findViewById(R.id.inpSongLink);
-        addSong = findViewById(R.id.btnAddSong);
+        //findById
+        allSongsActivity = findViewById(R.id.btnAllSongsActivity);
+        playlistsActivity = findViewById(R.id.btnPlaylistsActivity);
+        addSongActivity = findViewById(R.id.btnAddSongActivity);
+        settingsActivity = findViewById(R.id.btnSettingsActivity);
 
-        // Button method
-        addSong.setOnClickListener(new View.OnClickListener()
+        // Button methods
+        addSongActivity.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                MyDatabaseHelper myDb = new MyDatabaseHelper(MainActivity.this);
-                myDb.addSongs(songTitle.getText().toString(), songArtist.getText().toString(),
-                        songType.getText().toString(), songLink.getText().toString());
+                startActivity(new Intent(MainActivity.this, AddSongActivity.class));
             }
         });
     }
