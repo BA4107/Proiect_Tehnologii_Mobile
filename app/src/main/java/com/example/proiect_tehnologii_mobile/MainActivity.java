@@ -37,5 +37,32 @@ public class MainActivity extends AppCompatActivity
                 startActivity(new Intent(MainActivity.this, AddSongActivity.class));
             }
         });
+
+        settingsActivity.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                startActivity(new Intent(MainActivity.this, SettingsActivity.class));
+            }
+        });
+
+        allSongsActivity.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                // TODO AllSongsActivity  functionality
+            }
+        });
+
+        playlistsActivity.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                // TODO PlaylistsActivity functionality
+            }
+        });
     }
 }

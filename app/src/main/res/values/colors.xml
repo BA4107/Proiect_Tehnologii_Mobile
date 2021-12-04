@@ -13,4 +13,17 @@
     <color name="colorPrimary">#d32f2f</color>
     <color name="colorPrimaryDark">#c72c2c</color>
     <color name="colorAccent">#FFFFFF</color>
+
+    <!--Dark mode-->
+    <color name="cool_grey_500">#616E7C</color>
+    <color name="cool_grey_50">#F5F7FA</color>
+    <color name="cool_grey_100">#E4E7EB</color>
+    <color name="cool_grey_200">#CBD2D9</color>
+    <color name="cool_grey_300">#9AA5B1</color>
+    <color name="cool_grey_400">#7B8794</color>
+    <color name="cool_grey_600">#52606D</color>
+    <color name="cool_grey_700">#3E4C59</color>
+    <color name="cool_grey_800">#323F4B</color>
+    <color name="cool_grey_900">#1F2933</color>
+
 </resources>

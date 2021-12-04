@@ -22,7 +22,8 @@
             android:background="@drawable/baseline_library_music_24"
             android:contentDescription="@string/string_all_songs"
             android:minHeight="150dp"
-            tools:ignore="SpeakableTextPresentCheck" />
+            tools:ignore="SpeakableTextPresentCheck"
+            app:tint="#A84242" />
 
         <ImageButton
             android:id="@+id/btnPlaylistsActivity"
