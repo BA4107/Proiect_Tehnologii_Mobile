@@ -10,10 +10,7 @@ import android.widget.ImageButton;
 public class MainActivity extends AppCompatActivity
 {
     // Variables
-    ImageButton allSongsActivity;
-    ImageButton playlistsActivity;
-    ImageButton addSongActivity;
-    ImageButton settingsActivity;
+    ImageButton allSongsActivity, playlistsActivity, addSongActivity, settingsActivity;
 
     // Methods
     @Override
@@ -52,7 +49,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                // TODO AllSongsActivity  functionality
+                startActivity(new Intent(MainActivity.this, AllSongsActivity.class));
             }
         });
 

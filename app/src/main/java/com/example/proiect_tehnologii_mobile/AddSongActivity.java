@@ -9,10 +9,7 @@ import android.widget.EditText;
 public class AddSongActivity extends AppCompatActivity {
 
     // Variables
-    EditText songTitle;
-    EditText songArtist;
-    EditText songType;
-    EditText songLink;
+    EditText songTitle, songArtist, songType, songLink;
     Button addSong;
 
     @Override
