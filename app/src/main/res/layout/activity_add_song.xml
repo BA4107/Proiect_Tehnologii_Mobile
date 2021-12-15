@@ -5,59 +5,87 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AddSongActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/darkRed">
 
-    <EditText
-        android:id="@+id/inpSongTitle"
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="10dp"
-        android:ems="10"
-        android:hint="@string/stringSongTitle"
-        android:importantForAutofill="no"
-        android:inputType="textPersonName"
-        android:minHeight="48dp" />
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:backgroundTint="@color/darkSalmon"
+        android:layout_marginEnd="20dp"
+        app:cardCornerRadius="15dp">
 
-    <EditText
-        android:id="@+id/inpSongArtist"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginRight="10dp"
-        android:ems="10"
-        android:hint="@string/StringArtist"
-        android:importantForAutofill="no"
-        android:inputType="textPersonName"
-        android:minHeight="48dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/inpSongType"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginRight="10dp"
-        android:ems="10"
-        android:hint="@string/StringSongType"
-        android:importantForAutofill="no"
-        android:inputType="textPersonName"
-        android:minHeight="48dp" />
+            <EditText
+                android:id="@+id/inpSongTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="10dp"
+                android:ems="10"
+                android:hint="@string/stringSongTitle"
+                android:importantForAutofill="no"
+                android:inputType="textPersonName"
+                android:minHeight="48dp"
+                android:textColorHint="#BC9191"
+                android:textColor="@color/white"/>
 
-    <EditText
-        android:id="@+id/inpSongLink"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginRight="10dp"
-        android:ems="10"
-        android:hint="@string/StringSongLink"
-        android:importantForAutofill="no"
-        android:inputType="textPersonName"
-        android:minHeight="48dp" />
+            <EditText
+                android:id="@+id/inpSongArtist"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="10dp"
+                android:ems="10"
+                android:hint="@string/StringArtist"
+                android:importantForAutofill="no"
+                android:inputType="textPersonName"
+                android:minHeight="48dp"
+                android:textColorHint="#BC9191"
+                android:textColor="@color/white"/>
+
+            <EditText
+                android:id="@+id/inpSongType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="10dp"
+                android:ems="10"
+                android:hint="@string/StringSongType"
+                android:importantForAutofill="no"
+                android:inputType="textPersonName"
+                android:minHeight="48dp"
+                android:textColorHint="#BC9191"
+                android:textColor="@color/white"/>
+
+            <EditText
+                android:id="@+id/inpSongLink"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="15dp"
+                android:ems="10"
+                android:hint="@string/StringSongLink"
+                android:importantForAutofill="no"
+                android:inputType="textPersonName"
+                android:minHeight="48dp"
+                android:singleLine="false"
+                android:textColorHint="#BC9191"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
 
     <Button
         android:id="@+id/btnAddSong"
@@ -66,6 +94,8 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="10dp"
-        android:text="@string/StringAddSong" />
+        android:text="@string/StringAddSong"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/darkOrange"/>
 
 </LinearLayout>

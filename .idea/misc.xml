@@ -4,21 +4,30 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Courses/Android Development/Codelab/Proiect_Tehnologii_Mobile/app/src/main/res/drawable-v24/baseline_add_circle_24.xml" value="0.27870370370370373" />
+        <entry key="..\:/Courses/Android Development/Codelab/Proiect_Tehnologii_Mobile/app/src/main/res/drawable-v24/baseline_arrow_back_24.xml" value="0.1" />
+        <entry key="..\:/Courses/Android Development/Codelab/Proiect_Tehnologii_Mobile/app/src/main/res/drawable-v24/baseline_delete_outline_24.xml" value="0.1" />
         <entry key="..\:/Courses/Android Development/Codelab/Proiect_Tehnologii_Mobile/app/src/main/res/drawable-v24/baseline_home_24.xml" value="0.27870370370370373" />
         <entry key="..\:/Courses/Android Development/Codelab/Proiect_Tehnologii_Mobile/app/src/main/res/drawable-v24/baseline_library_music_24.xml" value="0.27870370370370373" />
+        <entry key="..\:/Courses/Android Development/Codelab/Proiect_Tehnologii_Mobile/app/src/main/res/drawable-v24/baseline_pause_24.xml" value="0.1" />
         <entry key="..\:/Courses/Android Development/Codelab/Proiect_Tehnologii_Mobile/app/src/main/res/drawable-v24/baseline_playlist_play_24.xml" value="0.27870370370370373" />
         <entry key="..\:/Courses/Android Development/Codelab/Proiect_Tehnologii_Mobile/app/src/main/res/drawable-v24/baseline_settings_20.xml" value="0.27870370370370373" />
         <entry key="..\:/Courses/Android Development/Codelab/Proiect_Tehnologii_Mobile/app/src/main/res/drawable-v24/baseline_settings_24.xml" value="0.27870370370370373" />
+        <entry key="..\:/Courses/Android Development/Codelab/Proiect_Tehnologii_Mobile/app/src/main/res/drawable-v24/baseline_skip_next_24.xml" value="0.1" />
+        <entry key="..\:/Courses/Android Development/Codelab/Proiect_Tehnologii_Mobile/app/src/main/res/drawable-v24/baseline_skip_previous_24.xml" value="0.18888888888888888" />
         <entry key="..\:/Courses/Android Development/Codelab/Proiect_Tehnologii_Mobile/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.3828125" />
         <entry key="..\:/Courses/Android Development/Codelab/Proiect_Tehnologii_Mobile/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3828125" />
+        <entry key="..\:/Courses/Android Development/Codelab/Proiect_Tehnologii_Mobile/app/src/main/res/layout-v29/activity_settings.xml" value="0.36666666666666664" />
         <entry key="..\:/Courses/Android Development/Codelab/Proiect_Tehnologii_Mobile/app/src/main/res/layout/activity_add_song.xml" value="0.33" />
         <entry key="..\:/Courses/Android Development/Codelab/Proiect_Tehnologii_Mobile/app/src/main/res/layout/activity_all_songs.xml" value="0.36666666666666664" />
         <entry key="..\:/Courses/Android Development/Codelab/Proiect_Tehnologii_Mobile/app/src/main/res/layout/activity_main.xml" value="0.33" />
-        <entry key="..\:/Courses/Android Development/Codelab/Proiect_Tehnologii_Mobile/app/src/main/res/layout/activity_settings.xml" value="0.36666666666666664" />
+        <entry key="..\:/Courses/Android Development/Codelab/Proiect_Tehnologii_Mobile/app/src/main/res/layout/activity_playlists.xml" value="0.36666666666666664" />
+        <entry key="..\:/Courses/Android Development/Codelab/Proiect_Tehnologii_Mobile/app/src/main/res/layout/activity_settings.xml" value="0.5" />
         <entry key="..\:/Courses/Android Development/Codelab/Proiect_Tehnologii_Mobile/app/src/main/res/layout/content_all_songs.xml" value="0.36666666666666664" />
         <entry key="..\:/Courses/Android Development/Codelab/Proiect_Tehnologii_Mobile/app/src/main/res/layout/fragment_first.xml" value="0.36666666666666664" />
         <entry key="..\:/Courses/Android Development/Codelab/Proiect_Tehnologii_Mobile/app/src/main/res/layout/fragment_second.xml" value="0.36666666666666664" />
+        <entry key="..\:/Courses/Android Development/Codelab/Proiect_Tehnologii_Mobile/app/src/main/res/layout/generic_song.xml" value="0.5" />
         <entry key="..\:/Courses/Android Development/Codelab/Proiect_Tehnologii_Mobile/app/src/main/res/layout/settings_layout.xml" value="0.36666666666666664" />
+        <entry key="..\:/Courses/Android Development/Codelab/Proiect_Tehnologii_Mobile/app/src/main/res/layout/song_generic_row.xml" value="0.5" />
         <entry key="..\:/Courses/Android Development/Codelab/Proiect_Tehnologii_Mobile/app/src/main/res/menu/notifications.xml" value="0.225" />
       </map>
     </option>

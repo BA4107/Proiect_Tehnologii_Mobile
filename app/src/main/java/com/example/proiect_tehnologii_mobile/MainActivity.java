@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setTitle("Home");
 
         //findById
         allSongsActivity = findViewById(R.id.btnAllSongsActivity);
@@ -58,8 +59,9 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                // TODO PlaylistsActivity functionality
+                startActivity(new Intent(MainActivity.this, PlaylistsActivity.class));
             }
         });
+        // TODO Shadows on buttons
     }
 }

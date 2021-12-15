@@ -7,7 +7,6 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class AddSongActivity extends AppCompatActivity {
-
     // Variables
     EditText songTitle, songArtist, songType, songLink;
     Button addSong;
@@ -16,6 +15,7 @@ public class AddSongActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_song);
+        setTitle("Add Song");
 
         // findViewById
         songTitle = findViewById(R.id.inpSongTitle);
@@ -36,5 +36,7 @@ public class AddSongActivity extends AppCompatActivity {
             }
         });
 
+        // GoBack to MainActivity
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 }
