@@ -1,22 +1,21 @@
 package com.example.proiect_tehnologii_mobile;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.widget.ListView;
 
-import java.util.ArrayList;
+import java.util.Objects;
 
 public class AllSongsActivity extends AppCompatActivity
 {
-
     // Variables
     ListView allSongs;
-    ArrayList<String> titles, artists, genres;
     GenericSongAdapter cursorAdapter;
 
+    // OnCreate method
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -26,9 +25,6 @@ public class AllSongsActivity extends AppCompatActivity
 
         // Showing all songs from database
         allSongs = findViewById(R.id.viewAllSongs);
-        titles = new ArrayList<>();
-        artists = new ArrayList<>();
-        genres = new ArrayList<>();
 
         MyDatabaseHelper db = new MyDatabaseHelper(AllSongsActivity.this);
         Cursor cursor = db.readAllData();
@@ -41,9 +37,20 @@ public class AllSongsActivity extends AppCompatActivity
         // Switch to new cursor and update contents of ListView
         //todoAdapter.changeCursor(todoCursor);
 
-        // TODO OnClick CustomAdapter open fragment with video + buttons
+
+        //OnClick event for items in listview
+        allSongs.setOnItemClickListener((parent, view, position, id) ->
+        {
+            Intent intent = new Intent(this, GenericVideoActivity.class);
+            Bundle extraStuff = new Bundle();
+            extraStuff.putLong("key", position);
+            intent.putExtras(extraStuff);
+            startActivity(intent);
+        });
+
+        // TODO Options menu with sorting options
 
         // GoBack to MainActivity
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
     }
 }

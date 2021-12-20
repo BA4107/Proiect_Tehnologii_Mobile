@@ -1,16 +1,21 @@
 package com.example.proiect_tehnologii_mobile;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class AddSongActivity extends AppCompatActivity {
+import java.util.Objects;
+
+public class AddSongActivity extends AppCompatActivity
+{
     // Variables
     EditText songTitle, songArtist, songType, songLink;
     Button addSong;
 
+    //OnCreate method
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,18 +30,20 @@ public class AddSongActivity extends AppCompatActivity {
         addSong = findViewById(R.id.btnAddSong);
 
         // Button method
-        addSong.setOnClickListener(new View.OnClickListener()
+        addSong.setOnClickListener(v ->
         {
-            @Override
-            public void onClick(View v)
-            {
-                MyDatabaseHelper myDb = new MyDatabaseHelper(AddSongActivity.this);
-                myDb.addSongs(songTitle.getText().toString(), songArtist.getText().toString(),
-                        songType.getText().toString(), songLink.getText().toString());
-            }
+            MyDatabaseHelper myDb = new MyDatabaseHelper(AddSongActivity.this);
+            myDb.addSongs(songTitle.getText().toString(), songArtist.getText().toString(),
+                    songType.getText().toString(), songLink.getText().toString());
+
+            // GoBack to previous activity
+            Intent intent = new Intent(AddSongActivity.this, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+            AddSongActivity.this.finish();
         });
 
         // GoBack to MainActivity
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
     }
 }

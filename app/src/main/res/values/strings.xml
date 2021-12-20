@@ -31,4 +31,12 @@
     <string name="default_artist">Default Artist</string>
     <string name="default_genre">Default Genre</string>
     <string name="darkmode_lightmode">DarkMode/LightMode</string>
+
+    <string name="StringPrevSong">Previous Song</string>
+    <string name="stringPauseSong">Pause Song</string>
+    <string name="stringNextSong">Next Song</string>
+    <string name="stringModifySong">Modify Song</string>
+    <string name="stringAddToPlaylist">Add to Playlist</string>
+    <string name="stringDeleteSong">Delete Song</string>
+    <string name="change_details">Change Details</string>
 </resources>

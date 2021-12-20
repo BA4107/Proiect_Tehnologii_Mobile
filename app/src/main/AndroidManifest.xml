@@ -10,25 +10,33 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Proiect_Tehnologii_Mobile">
         <activity
+            android:name=".ModifySongActivity"
+            android:exported="false"
+            android:parentActivityName=".GenericVideoActivity" />
+        <activity
+            android:name=".GenericVideoActivity"
+            android:exported="false"
+            android:parentActivityName=".AllSongsActivity" />
+        <activity
             android:name=".PlaylistsActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity"
-            android:label="Playlists"/>
+            android:label="Playlists"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".AllSongsActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity"
-            android:label="All Songs"/>
+            android:label="All Songs"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".SettingsActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity"
-            android:label="Settings"/>
+            android:label="Settings"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".AddSongActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity"
-            android:label="@string/StringAddSong"/>
+            android:label="@string/StringAddSong"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true"

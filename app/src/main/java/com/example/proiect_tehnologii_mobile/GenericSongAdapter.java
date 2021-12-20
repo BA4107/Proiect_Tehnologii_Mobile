@@ -11,9 +11,7 @@ import android.widget.TextView;
 public class GenericSongAdapter extends CursorAdapter
 {
     // Variables
-    TextView songTitle;
-    TextView songArtist;
-    TextView songGenre;
+    TextView songTitle, songArtist, songGenre;
 
     // Constructor
     public GenericSongAdapter(Context context, Cursor cursor)
@@ -31,6 +29,7 @@ public class GenericSongAdapter extends CursorAdapter
     @Override
     public void bindView(View view, Context context, Cursor cursor)
     {
+        // findViewById
         songTitle = view.findViewById(R.id.txtGenericTitle);
         songArtist = view.findViewById(R.id.txtGenericArtist);
         songGenre = view.findViewById(R.id.txtGenericGenre);
@@ -44,6 +43,5 @@ public class GenericSongAdapter extends CursorAdapter
         songTitle.setText(title);
         songArtist.setText(artist);
         songGenre.setText(genre);
-
     }
 }

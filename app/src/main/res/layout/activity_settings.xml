@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,23 +8,11 @@
     android:background="@color/darkRed">
 
     <Button
-        android:id="@+id/btnDarkLight"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="10dp"
-        android:backgroundTint="@color/darkSalmon"
-        android:text="@string/darkmode_lightmode"
-        tools:ignore="TextContrastCheck"
-        android:textColor="@color/white"/>
-
-    <Button
         android:id="@+id/btnDeleteAllSongs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="15dp"
         android:layout_marginRight="10dp"
         android:backgroundTint="@color/darkOrange"
         android:text="@string/string_delete_all"

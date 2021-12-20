@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".GenericVideoActivity"
+    android:background="@color/darkRed">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:backgroundTint="@color/darkOrange"
+        app:cardCornerRadius="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtVideoTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:minHeight="35dp"
+                android:text="@string/default_title"
+                android:textColor="@color/white"
+                android:textSize="22sp"/>
+
+            <VideoView
+                android:id="@+id/videoView2"
+                android:layout_width="match_parent"
+                android:layout_height="198dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="15dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/btnPrev"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/baseline_skip_previous_24"
+                    android:contentDescription="@string/StringPrevSong"
+                    android:minWidth="50dp"
+                    android:minHeight="50dp"
+                    tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck"
+                    android:layout_marginRight="10dp"/>
+
+                <ImageButton
+                    android:id="@+id/btnPause"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/baseline_pause_24"
+                    android:contentDescription="@string/stringPauseSong"
+                    android:minWidth="50dp"
+                    android:minHeight="50dp"
+                    tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck"
+                    android:layout_marginRight="10dp"/>
+
+                <ImageButton
+                    android:id="@+id/btnNext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/baseline_skip_next_24"
+                    android:contentDescription="@string/stringNextSong"
+                    android:minWidth="50dp"
+                    android:minHeight="50dp"
+                    tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck"
+                    android:layout_marginRight="10dp"/>
+
+                <ImageButton
+                    android:id="@+id/btnAddToPlaylist"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/baseline_add_circle_24"
+                    android:contentDescription="@string/stringAddToPlaylist"
+                    android:minWidth="50dp"
+                    android:minHeight="50dp"
+                    tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck"
+                    android:layout_marginRight="10dp"/>
+
+                <ImageButton
+                    android:id="@+id/btnDelete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/baseline_delete_outline_24"
+                    android:contentDescription="@string/stringDeleteSong"
+                    android:minWidth="50dp"
+                    android:minHeight="50dp"
+                    tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck"
+                    android:layout_marginRight="10dp"/>
+
+                <ImageButton
+                    android:id="@+id/btnModify"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/baseline_settings_24"
+                    android:contentDescription="@string/stringModifySong"
+                    android:minWidth="50dp"
+                    android:minHeight="50dp"
+                    tools:ignore="ImageContrastCheck,SpeakableTextPresentCheck" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
