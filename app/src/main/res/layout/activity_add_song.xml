@@ -6,13 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".AddSongActivity"
     android:orientation="vertical"
-    android:background="@color/darkRed">
+    android:background="@color/darkRed"
+    android:gravity="center">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="30dp"
         android:backgroundTint="@color/darkSalmon"
         android:layout_marginEnd="20dp"
         app:cardCornerRadius="15dp">

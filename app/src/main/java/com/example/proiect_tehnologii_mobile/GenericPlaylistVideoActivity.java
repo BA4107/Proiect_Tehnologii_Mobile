@@ -12,7 +12,7 @@ import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerView;
 
-public class GenericVideoActivity extends YouTubeBaseActivity
+public class GenericPlaylistVideoActivity extends YouTubeBaseActivity
 {
 
     // Variables
@@ -35,14 +35,16 @@ public class GenericVideoActivity extends YouTubeBaseActivity
         // Grabbing the id
         Bundle extraStuff = getIntent().getExtras();
         long songPos = -1;
+        String playlistName = "";
         if( extraStuff != null)
         {
             songPos = extraStuff.getLong("key");
+            playlistName = extraStuff.getString("playlist");
         }
 
         // Reading the selected song
-        MyDatabaseHelper db = new MyDatabaseHelper(GenericVideoActivity.this);
-        cursor = db.readAllSongs();
+        MyDatabaseHelper db = new MyDatabaseHelper(GenericPlaylistVideoActivity.this);
+        cursor = db.readSongsFromPlaylist(playlistName);
         cursor.moveToPosition((int) songPos);
 
         // findViewById
@@ -111,10 +113,10 @@ public class GenericVideoActivity extends YouTubeBaseActivity
             db.deleteOneEntry(cursor.getString(0));
 
             // GoBack to previous activity
-            Intent intent = new Intent(GenericVideoActivity.this, AllSongsActivity.class);
+            Intent intent = new Intent(GenericPlaylistVideoActivity.this, AllSongsActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
-            GenericVideoActivity.this.finish();
+            GenericPlaylistVideoActivity.this.finish();
         });
 
         btnModify.setOnClickListener(v ->

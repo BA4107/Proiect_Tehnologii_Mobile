@@ -26,7 +26,6 @@ public class SettingsActivity extends AppCompatActivity {
         {
             MyDatabaseHelper myDb = new MyDatabaseHelper(SettingsActivity.this);
             myDb.deleteAllData();
-            // TODO Warning before deleting everything
         });
 
         // GoBack to MainActivity

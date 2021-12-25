@@ -27,16 +27,11 @@ public class AllSongsActivity extends AppCompatActivity
         allSongs = findViewById(R.id.viewAllSongs);
 
         MyDatabaseHelper db = new MyDatabaseHelper(AllSongsActivity.this);
-        Cursor cursor = db.readAllData();
+        Cursor cursor = db.readAllSongs();
 
         cursorAdapter = new GenericSongAdapter(this, cursor);
 
         allSongs.setAdapter(cursorAdapter);
-
-        // TODO Delete if necessary
-        // Switch to new cursor and update contents of ListView
-        //todoAdapter.changeCursor(todoCursor);
-
 
         //OnClick event for items in listview
         allSongs.setOnItemClickListener((parent, view, position, id) ->
@@ -47,8 +42,6 @@ public class AllSongsActivity extends AppCompatActivity
             intent.putExtras(extraStuff);
             startActivity(intent);
         });
-
-        // TODO Options menu with sorting options
 
         // GoBack to MainActivity
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);

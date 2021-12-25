@@ -3,10 +3,19 @@ package com.example.proiect_tehnologii_mobile;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.MatrixCursor;
+import android.database.MergeCursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 public class MyDatabaseHelper extends SQLiteOpenHelper
 {
@@ -26,8 +35,9 @@ public class MyDatabaseHelper extends SQLiteOpenHelper
 
     // "playlist" table variables
     private static final String TABLE_PLAYLIST = "playlist";
-    private static final String COLUMN_PLAYLIST_ID = "_playlist_id";
+    private static final String COLUMN_ID_PLAY = "_id";
     private static final String COLUMN_NAME = "playlist_name";
+    private static final String COLUMN_SPLAY_ID = "song_id";
 
 
     // Constructor
@@ -41,6 +51,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper
     @Override
     public void onCreate(SQLiteDatabase db)
     {
+        // Creating the table "song"
         String query="CREATE TABLE " + TABLE_SONG + "(" +
                 COLUMN_SONG_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COLUMN_TITLE + " TEXT, " +
@@ -49,12 +60,21 @@ public class MyDatabaseHelper extends SQLiteOpenHelper
                 COLUMN_TYPE + " TEXT, " +
                 COLUMN_LINK +" TEXT);";
         db.execSQL(query);
+
+        // Creating the table "playlist"
+        query = "CREATE TABLE " + TABLE_PLAYLIST + "(" +
+                COLUMN_ID_PLAY + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                COLUMN_NAME + " STRING, " +
+                COLUMN_SPLAY_ID + " INTEGER);";
+        db.execSQL(query);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
     {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_SONG);
+        onCreate(db);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PLAYLIST);
         onCreate(db);
     }
 
@@ -79,8 +99,28 @@ public class MyDatabaseHelper extends SQLiteOpenHelper
         }
     }
 
+    // Method for adding playlists
+    // TODO Chech if this shit works
+    public void addPlaylists(String name, int song_id)
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(COLUMN_NAME, name);
+        cv.put(COLUMN_SPLAY_ID, song_id);
+
+        long result = db.insert(TABLE_SONG, null, cv);
+        if(result == -1)
+        {
+            Toast.makeText(context, "Failed to insert", Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            Toast.makeText(context, "Successfully inserted", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     // Method for selecting all the data from the database
-    public Cursor readAllData()
+    public Cursor readAllSongs()
     {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT * FROM " + TABLE_SONG;
@@ -92,18 +132,62 @@ public class MyDatabaseHelper extends SQLiteOpenHelper
         return cursor;
     }
 
-    // TODO Delete this
-    // Method for selecting one row from the database
-    public Cursor readOneRow(long id)
-    {
+    // Method for getting playlist names
+    public Cursor readAllPlaylists() {
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT * FROM " + TABLE_SONG + " WHERE " + COLUMN_SONG_ID + " = " + (int) id;
+        String query = "SELECT * FROM " + TABLE_PLAYLIST + " GROUP BY " + COLUMN_NAME;
         Cursor cursor = null;
-        if(db != null)
+
+        if (db != null)
         {
             cursor = db.rawQuery(query, null);
         }
         return cursor;
+    }
+
+    // Method for selecting all songs from a playlist
+    public Cursor readSongsFromPlaylist(String playlistName) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM " + TABLE_PLAYLIST + " WHERE " +
+                COLUMN_NAME + " = '" + playlistName + "'";
+        ArrayList <Integer> playlistSongs = new ArrayList();
+        // Cursor for getting all the song ids in a list
+        Cursor cursor = null;
+        if (db != null)
+        {
+            cursor = db.rawQuery(query, null);
+        }
+        while(cursor.moveToNext())
+        {
+            playlistSongs.add(cursor.getInt(2));
+        }
+
+        // Complicated way to go through the list and add the song in a cursor but this is all I found
+        Cursor allSongs = readAllSongs();
+        MergeCursor playlistCursor = null;
+        // Create a MatrixCursor filled with the rows you want to add.
+        MatrixCursor matrixCursor = new MatrixCursor(new String[] {COLUMN_SONG_ID,
+                COLUMN_TITLE, COLUMN_ARTIST, COLUMN_DURATION, COLUMN_TYPE,
+                COLUMN_LINK});
+        if (db != null)
+        {
+            while(allSongs.moveToNext())
+            {
+                for(Integer song_id : playlistSongs)
+                {
+                    if (allSongs.getInt(0) == song_id)
+                    {
+                        matrixCursor.addRow(new Object[] {allSongs.getInt(0),
+                                allSongs.getString(1), allSongs.getString(2),
+                                allSongs.getInt(3), allSongs.getString(4),
+                                allSongs.getString(5)});
+                    }
+                }
+            }
+            playlistCursor = new MergeCursor(new Cursor[] {matrixCursor, null});
+        }
+        allSongs.close();
+        return playlistCursor;
     }
 
     // Method for modifying the info of a song from the database
@@ -152,7 +236,9 @@ public class MyDatabaseHelper extends SQLiteOpenHelper
         SQLiteDatabase db = this.getWritableDatabase();
 
         db.execSQL("DELETE FROM " + TABLE_SONG);
-
-        // TODO Toast messages
+        db.execSQL("DELETE FROM " + TABLE_PLAYLIST);
     }
+
+    //TODO Delete playlist method
+    // TODO Update playlist name
 }

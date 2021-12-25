@@ -4,11 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PlaylistsActivity"
+    tools:context=".SongPlayListActivity"
     android:background="@color/darkRed">
 
     <ListView
-        android:id="@+id/viewAllPlaylists"
+        android:id="@+id/viewAllSongsPlaylist"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
