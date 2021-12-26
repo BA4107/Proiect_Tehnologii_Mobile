@@ -88,19 +88,17 @@ public class MyDatabaseHelper extends SQLiteOpenHelper
         cv.put(COLUMN_TYPE, type);
         cv.put(COLUMN_LINK, link);
 
-        long result = db.insert(TABLE_SONG, null, cv);
-        if(result == -1)
-        {
-            Toast.makeText(context, "Failed to insert", Toast.LENGTH_SHORT).show();
-        }
-        else
-        {
-            Toast.makeText(context, "Successfully inserted", Toast.LENGTH_SHORT).show();
-        }
+        db.insert(TABLE_SONG, null, cv);
+
+        // Creating a playlist for the artist/genre
+        Cursor cursor = this.readAllSongs();
+        cursor.moveToLast();
+        int songId = cursor.getInt(0);
+
+        addPlaylists(artist, songId);
     }
 
     // Method for adding playlists
-    // TODO Chech if this shit works
     public void addPlaylists(String name, int song_id)
     {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -108,15 +106,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper
         cv.put(COLUMN_NAME, name);
         cv.put(COLUMN_SPLAY_ID, song_id);
 
-        long result = db.insert(TABLE_SONG, null, cv);
-        if(result == -1)
-        {
-            Toast.makeText(context, "Failed to insert", Toast.LENGTH_SHORT).show();
-        }
-        else
-        {
-            Toast.makeText(context, "Successfully inserted", Toast.LENGTH_SHORT).show();
-        }
+        db.insert(TABLE_PLAYLIST, null, cv);
     }
 
     // Method for selecting all the data from the database
@@ -151,12 +141,14 @@ public class MyDatabaseHelper extends SQLiteOpenHelper
         String query = "SELECT * FROM " + TABLE_PLAYLIST + " WHERE " +
                 COLUMN_NAME + " = '" + playlistName + "'";
         ArrayList <Integer> playlistSongs = new ArrayList();
+
         // Cursor for getting all the song ids in a list
         Cursor cursor = null;
         if (db != null)
         {
             cursor = db.rawQuery(query, null);
         }
+
         while(cursor.moveToNext())
         {
             playlistSongs.add(cursor.getInt(2));
@@ -201,44 +193,43 @@ public class MyDatabaseHelper extends SQLiteOpenHelper
         cv.put(COLUMN_TYPE, type);
         cv.put(COLUMN_LINK, link);
 
-        long result = db.update(TABLE_SONG, cv, "_id=?", new String[]{row_id});
+        db.update(TABLE_SONG, cv, "_id=?", new String[]{row_id});
+    }
 
-        if(result == -1)
-        {
-            Toast.makeText(context, "Failed to update", Toast.LENGTH_SHORT).show();
-        }
-        else
-        {
-            Toast.makeText(context, "Successfully updated", Toast.LENGTH_SHORT).show();
-        }
+    // Method for modifying the name of the playlist from the database
+    public void updatePlaylist(String oldName, String newName)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(COLUMN_NAME, newName);
+
+        db.update(TABLE_PLAYLIST, cv, "playlist_name=?", new String[]{oldName});
     }
 
     // Method for deleting one song
     public void deleteOneEntry(String row_id)
     {
         SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_SONG, "_id=?", new String[]{row_id});
+        db.delete(TABLE_PLAYLIST, "song_id", new String[]{row_id});
+    }
 
-        long result = db.delete(TABLE_SONG, "_id=?", new String[]{row_id});
+    //Method for deleting a playlist
+    public void deletePlaylist(String playlistName)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
 
-        if(result == -1)
-        {
-            Toast.makeText(context, "Failed to delete", Toast.LENGTH_SHORT).show();
-        }
-        else
-        {
-            Toast.makeText(context, "Successfully deleted", Toast.LENGTH_SHORT).show();
-        }
+        db.delete(TABLE_PLAYLIST, "playlist_name=?", new String[]{playlistName});
     }
 
     // Method for deleting the entire "song" table
     public void deleteAllData()
     {
         SQLiteDatabase db = this.getWritableDatabase();
-
         db.execSQL("DELETE FROM " + TABLE_SONG);
         db.execSQL("DELETE FROM " + TABLE_PLAYLIST);
     }
 
-    //TODO Delete playlist method
-    // TODO Update playlist name
+    // TODO Sorting songs method based by default/name/artist/genre
+    // TODO Dont allow empty input slots
 }

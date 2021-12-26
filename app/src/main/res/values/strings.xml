@@ -39,4 +39,8 @@
     <string name="stringAddToPlaylist">Add to Playlist</string>
     <string name="stringDeleteSong">Delete Song</string>
     <string name="change_details">Change Details</string>
+    <string name="create_new_playlist">Create new playlist</string>
+    <string name="playlist_name">Playlist name</string>
+    <string name="change_name">Change name</string>
+    <string name="deleteplaylist">deletePlaylist</string>
 </resources>

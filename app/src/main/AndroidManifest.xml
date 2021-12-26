@@ -16,9 +16,6 @@
             android:name=".SongPlayListActivity"
             android:exported="false" />
         <activity
-            android:name=".AddPlaylistActivity"
-            android:exported="false" />
-        <activity
             android:name=".AddToPlaylistActivity"
             android:exported="false" />
         <activity

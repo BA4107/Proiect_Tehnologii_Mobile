@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import java.sql.SQLException;
@@ -20,6 +21,9 @@ public class AddToPlaylistActivity extends AppCompatActivity
     Button addPlaylist;
     ListView allPlaylists;
     GenericPlaylistAdapter cursorAdapter;
+    EditText playlistName;
+    MyDatabaseHelper db = new MyDatabaseHelper(AddToPlaylistActivity.this);
+    Cursor playlistCursor;
 
     // OnCreate method
     @Override
@@ -36,23 +40,39 @@ public class AddToPlaylistActivity extends AppCompatActivity
             songPos = extraPlayStuff.getLong("key");
         }
 
-        // Button methods
-        addPlaylist = findViewById(R.id.btnAddPlaylist);
-        // TODO For some reason it hates the button method
-
         // Showing all playlists from database
         allPlaylists = findViewById(R.id.viewAddToPlaylists);
 
-        MyDatabaseHelper db = new MyDatabaseHelper(AddToPlaylistActivity.this);
-        Cursor cursor = db.readAllPlaylists();
+        playlistCursor = db.readAllPlaylists();
 
-        cursorAdapter = new GenericPlaylistAdapter(this, cursor);
+        cursorAdapter = new GenericPlaylistAdapter(this, playlistCursor);
         allPlaylists.setAdapter(cursorAdapter);
+
+        // Button methods
+        Cursor cursor = db.readAllSongs();
+        cursor.moveToPosition((int) songPos);
+        int song_id = cursor.getInt(0);
+
+        addPlaylist = findViewById(R.id.btnAddPlaylist);
+        playlistName = findViewById(R.id.inpPlaylistName);
+
+        addPlaylist.setOnClickListener(v ->
+        {
+            db.addPlaylists(playlistName.getText().toString(), song_id);
+            refreshListview();
+        });
 
         //OnClick event for items in listview
         allPlaylists.setOnItemClickListener((parent, view, position, id) ->
         {
-            // TODO Add functionality for adding songs into existing playlists
+            playlistCursor.moveToPosition(position);
+            db.addPlaylists(playlistCursor.getString(1), song_id);
         });
+    }
+
+    private void refreshListview()
+    {
+        playlistCursor = db.readAllPlaylists();
+        cursorAdapter.swapCursor(playlistCursor);
     }
 }
