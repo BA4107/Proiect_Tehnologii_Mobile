@@ -11,16 +11,16 @@ import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerView;
 
-public class GenericVideoActivity extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener
+public class GenericVideoPlaylistActivity extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener
 {
     // Variables
     private static final String API_KEY = "AIzaSyCZIHQkSFfFpu9PZ4HTzc4mZtfA8plAyQg";
     YouTubePlayer youtubePlayer;
     TextView txtVideoTitle;
-    ImageButton btnPrev, btnNext, btnAddPlaylist, btnDelete, btnModify;
+    ImageButton btnPrev, btnNext, btnDelete, btnModify;
     Cursor cursor;
     YouTubePlayerView youTubePlayerView;
-    String videoCode, order;
+    String order, playlistName, videoCode;
     int songPos;
 
     // OnCreate method
@@ -28,29 +28,29 @@ public class GenericVideoActivity extends YouTubeBaseActivity implements YouTube
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_generic_video);
+        setContentView(R.layout.activity_generic_video_playlist);
         setTitle("Video Player");
 
-        // Grabbing the id and order
+        // Grabbing the id, playlist name and order
         Bundle extraStuff = getIntent().getExtras();
         if( extraStuff != null)
         {
             songPos = extraStuff.getInt("key");
+            playlistName = extraStuff.getString("playlist");
             order = extraStuff.getString("order");
         }
 
         // findViewById
-        txtVideoTitle = findViewById(R.id.txtVideoTitle);
-        btnPrev = findViewById(R.id.btnPrev);
-        btnNext = findViewById(R.id.btnNext);
-        btnAddPlaylist = findViewById(R.id.btnAddToPlaylist);
-        btnDelete = findViewById(R.id.btnDelete);
-        btnModify = findViewById(R.id.btnModify);
-        youTubePlayerView = findViewById(R.id.vidYoutube);
+        txtVideoTitle = findViewById(R.id.txtVideoPlaylistTitle);
+        btnPrev = findViewById(R.id.btnPrevPlaylist);
+        btnNext = findViewById(R.id.btnNextPlaylist);
+        btnDelete = findViewById(R.id.btnDeletePlaylist);
+        btnModify = findViewById(R.id.btnModifyPlaylist);
+        youTubePlayerView = findViewById(R.id.vidYoutubePlaylist);
 
         // Reading the selected song
-        MyDatabaseHelper db = new MyDatabaseHelper(GenericVideoActivity.this);
-        cursor = db.readAllSongs(order);
+        MyDatabaseHelper db = new MyDatabaseHelper(GenericVideoPlaylistActivity.this);
+        cursor = db.readSongsFromPlaylist(playlistName, order);
         cursor.moveToPosition(songPos);
 
         // Binding the data to the title and video
@@ -72,7 +72,6 @@ public class GenericVideoActivity extends YouTubeBaseActivity implements YouTube
             txtVideoTitle.setText(cursor.getString(1));
             videoCode = cursor.getString(5);
             youtubePlayer.loadVideo(videoCode);
-
         });
 
         btnNext.setOnClickListener(v ->
@@ -90,30 +89,21 @@ public class GenericVideoActivity extends YouTubeBaseActivity implements YouTube
             youtubePlayer.loadVideo(videoCode);
         });
 
-        btnAddPlaylist.setOnClickListener(v ->
-        {
-            Intent intent = new Intent(this, AddToPlaylistActivity.class);
-            Bundle extraPlayStuff = new Bundle();
-            extraPlayStuff.putInt("key", cursor.getPosition());
-            extraPlayStuff.putString("order", order);
-            intent.putExtras(extraPlayStuff);
-            startActivity(intent);
-        });
-
         btnDelete.setOnClickListener(v ->
         {
             db.deleteOneEntry(cursor.getString(0));
-            Intent intent = new Intent(GenericVideoActivity.this, AllSongsActivity.class);
+            Intent intent = new Intent(GenericVideoPlaylistActivity.this, AllSongsActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
-            GenericVideoActivity.this.finish();
+            GenericVideoPlaylistActivity.this.finish();
         });
 
         btnModify.setOnClickListener(v ->
         {
-            Intent intent = new Intent(this, ModifySongActivity.class);
+            Intent intent = new Intent(this, ModifySongPlaylistActivity.class);
             Bundle extraModStuff = new Bundle();
             extraModStuff.putInt("key", cursor.getPosition());
+            extraModStuff.putString("playlist", playlistName);
             extraModStuff.putString("order", order);
             intent.putExtras(extraModStuff);
             startActivity(intent);
@@ -127,6 +117,8 @@ public class GenericVideoActivity extends YouTubeBaseActivity implements YouTube
         if (!b)
         {
             youtubePlayer = player;
+            // loadVideo() will auto play video
+            // Use cueVideo() method, if you don't want to play it automatically
             youtubePlayer.loadVideo(videoCode);
 
             // Hiding player controls
@@ -180,7 +172,7 @@ public class GenericVideoActivity extends YouTubeBaseActivity implements YouTube
     }
 
     @Override
-    public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult errorReason)
+    public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult)
     {
         Toast.makeText(getApplicationContext(), "onInitializationFailure()",
                 Toast.LENGTH_LONG).show();

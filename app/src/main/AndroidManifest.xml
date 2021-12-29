@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Proiect_Tehnologii_Mobile">
         <activity
-            android:name=".SongPlayListActivity"
+            android:name=".AllSongsPlaylistActivity"
             android:exported="false" />
         <activity
             android:name=".AddToPlaylistActivity"
@@ -22,15 +22,18 @@
             android:name=".ModifySongActivity"
             android:exported="false" />
         <activity
+            android:name=".ModifySongPlaylistActivity"
+            android:exported="false" />
+        <activity
             android:name=".GenericVideoActivity"
             android:exported="false"
             android:parentActivityName=".AllSongsActivity" />
         <activity
-            android:name=".GenericPlaylistVideoActivity"
+            android:name=".GenericVideoPlaylistActivity"
             android:exported="false"
-            android:parentActivityName=".PlaylistsActivity" />
+            android:parentActivityName=".AllPlaylistsActivity" />
         <activity
-            android:name=".PlaylistsActivity"
+            android:name=".AllPlaylistsActivity"
             android:exported="false"
             android:label="Playlists"
             android:parentActivityName=".MainActivity" />

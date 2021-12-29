@@ -26,7 +26,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/txtVideoTitle"
+                android:id="@+id/txtVideoPlaylistTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -38,7 +38,7 @@
                 android:textSize="22sp"/>
 
             <com.google.android.youtube.player.YouTubePlayerView
-                android:id="@+id/vidYoutube"
+                android:id="@+id/vidYoutubePlaylist"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
@@ -53,7 +53,7 @@
                 android:orientation="horizontal">
 
                 <ImageButton
-                    android:id="@+id/btnPrev"
+                    android:id="@+id/btnPrevPlaylist"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/baseline_skip_previous_24"
@@ -64,7 +64,7 @@
                     android:layout_marginEnd="20dp"/>
 
                 <ImageButton
-                    android:id="@+id/btnNext"
+                    android:id="@+id/btnNextPlaylist"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/baseline_skip_next_24"
@@ -76,17 +76,7 @@
                     android:layout_marginEnd="20dp"/>
 
                 <ImageButton
-                    android:id="@+id/btnAddToPlaylist"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/baseline_add_circle_24"
-                    android:contentDescription="@string/stringAddToPlaylist"
-                    android:minWidth="50dp"
-                    android:minHeight="50dp"
-                    tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck"
-                    android:layout_marginEnd="20dp"/>
-                <ImageButton
-                    android:id="@+id/btnDelete"
+                    android:id="@+id/btnDeletePlaylist"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/baseline_delete_outline_24"
@@ -97,7 +87,7 @@
                     android:layout_marginEnd="20dp"/>
 
                 <ImageButton
-                    android:id="@+id/btnModify"
+                    android:id="@+id/btnModifyPlaylist"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/baseline_settings_24"
@@ -105,7 +95,6 @@
                     android:minWidth="50dp"
                     android:minHeight="50dp"
                     tools:ignore="ImageContrastCheck,SpeakableTextPresentCheck" />
-
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>

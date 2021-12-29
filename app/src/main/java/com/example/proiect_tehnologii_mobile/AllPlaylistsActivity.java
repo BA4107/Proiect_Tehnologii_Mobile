@@ -1,23 +1,18 @@
 package com.example.proiect_tehnologii_mobile;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
-
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Objects;
 
-public class PlaylistsActivity extends AppCompatActivity
+public class AllPlaylistsActivity extends AppCompatActivity
 {
     // Variables
     ListView allPlaylists;
     GenericPlaylistAdapter cursorAdapter;
+    Cursor cursor;
 
     // OnCreate method
     @Override
@@ -26,21 +21,21 @@ public class PlaylistsActivity extends AppCompatActivity
         setContentView(R.layout.activity_playlists);
         setTitle("Playlists");
 
-        // Showing all playlists from database
+        // findViewById
         allPlaylists = findViewById(R.id.viewAllPlaylists);
 
-        MyDatabaseHelper db = new MyDatabaseHelper(PlaylistsActivity.this);
-        Cursor cursor = db.readAllPlaylists();
-
+        // Showing all playlists from database
+        MyDatabaseHelper db = new MyDatabaseHelper(AllPlaylistsActivity.this);
+        cursor = db.readAllPlaylists();
         cursorAdapter = new GenericPlaylistAdapter(this, cursor);
         allPlaylists.setAdapter(cursorAdapter);
 
         //OnClick event for items in listview
         allPlaylists.setOnItemClickListener((parent, view, position, id) ->
         {
-            Intent intent = new Intent(this, SongPlayListActivity.class);
+            Intent intent = new Intent(this, AllSongsPlaylistActivity.class);
             Bundle extraStuff = new Bundle();
-            extraStuff.putLong("key", position);
+            extraStuff.putInt("key", position);
             intent.putExtras(extraStuff);
             startActivity(intent);
         });

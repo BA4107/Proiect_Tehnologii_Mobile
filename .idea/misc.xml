@@ -22,6 +22,7 @@
         <entry key="..\:/Courses/Android Development/Codelab/Proiect_Tehnologii_Mobile/app/src/main/res/layout/activity_add_to_playlist.xml" value="0.36666666666666664" />
         <entry key="..\:/Courses/Android Development/Codelab/Proiect_Tehnologii_Mobile/app/src/main/res/layout/activity_all_songs.xml" value="0.36666666666666664" />
         <entry key="..\:/Courses/Android Development/Codelab/Proiect_Tehnologii_Mobile/app/src/main/res/layout/activity_generic_video.xml" value="0.35260416666666666" />
+        <entry key="..\:/Courses/Android Development/Codelab/Proiect_Tehnologii_Mobile/app/src/main/res/layout/activity_generic_video_playlist.xml" value="0.36666666666666664" />
         <entry key="..\:/Courses/Android Development/Codelab/Proiect_Tehnologii_Mobile/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Courses/Android Development/Codelab/Proiect_Tehnologii_Mobile/app/src/main/res/layout/activity_modify_song.xml" value="0.36666666666666664" />
         <entry key="..\:/Courses/Android Development/Codelab/Proiect_Tehnologii_Mobile/app/src/main/res/layout/activity_playlists.xml" value="0.36666666666666664" />
@@ -34,6 +35,7 @@
         <entry key="..\:/Courses/Android Development/Codelab/Proiect_Tehnologii_Mobile/app/src/main/res/layout/fragment_second.xml" value="0.36666666666666664" />
         <entry key="..\:/Courses/Android Development/Codelab/Proiect_Tehnologii_Mobile/app/src/main/res/layout/generic_playlist.xml" value="0.36666666666666664" />
         <entry key="..\:/Courses/Android Development/Codelab/Proiect_Tehnologii_Mobile/app/src/main/res/layout/generic_song.xml" value="0.5" />
+        <entry key="..\:/Courses/Android Development/Codelab/Proiect_Tehnologii_Mobile/app/src/main/res/layout/order_by_song_menu.xml" value="0.33" />
         <entry key="..\:/Courses/Android Development/Codelab/Proiect_Tehnologii_Mobile/app/src/main/res/layout/settings_layout.xml" value="0.36666666666666664" />
         <entry key="..\:/Courses/Android Development/Codelab/Proiect_Tehnologii_Mobile/app/src/main/res/layout/song_generic_row.xml" value="0.5" />
         <entry key="..\:/Courses/Android Development/Codelab/Proiect_Tehnologii_Mobile/app/src/main/res/menu/notifications.xml" value="0.225" />

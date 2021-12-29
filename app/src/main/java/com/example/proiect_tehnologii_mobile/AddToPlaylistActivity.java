@@ -1,29 +1,24 @@
 package com.example.proiect_tehnologii_mobile;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Objects;
+import android.widget.Toast;
 
 public class AddToPlaylistActivity extends AppCompatActivity
 {
     // Variables
+    MyDatabaseHelper db = new MyDatabaseHelper(AddToPlaylistActivity.this);
     Button addPlaylist;
     ListView allPlaylists;
     GenericPlaylistAdapter cursorAdapter;
     EditText playlistName;
-    MyDatabaseHelper db = new MyDatabaseHelper(AddToPlaylistActivity.this);
-    Cursor playlistCursor;
+    Cursor playlistCursor, cursor;
+    int songPos, song_id;
+    String order;
 
     // OnCreate method
     @Override
@@ -33,33 +28,39 @@ public class AddToPlaylistActivity extends AppCompatActivity
         setContentView(R.layout.activity_add_to_playlist);
         setTitle("Choose playlist");
 
-        // Grabbing the id
+        // Grabbing the position
         Bundle extraPlayStuff = getIntent().getExtras();
-        long songPos = -1;
         {
-            songPos = extraPlayStuff.getLong("key");
+            songPos = extraPlayStuff.getInt("key");
+            order = extraPlayStuff.getString("order");
         }
 
-        // Showing all playlists from database
+        // findViewByID
         allPlaylists = findViewById(R.id.viewAddToPlaylists);
-
-        playlistCursor = db.readAllPlaylists();
-
-        cursorAdapter = new GenericPlaylistAdapter(this, playlistCursor);
-        allPlaylists.setAdapter(cursorAdapter);
-
-        // Button methods
-        Cursor cursor = db.readAllSongs();
-        cursor.moveToPosition((int) songPos);
-        int song_id = cursor.getInt(0);
-
         addPlaylist = findViewById(R.id.btnAddPlaylist);
         playlistName = findViewById(R.id.inpPlaylistName);
 
+        // Showing all playlists from database
+        playlistCursor = db.readAllPlaylists();
+        cursorAdapter = new GenericPlaylistAdapter(this, playlistCursor);
+        allPlaylists.setAdapter(cursorAdapter);
+
+        // Button method
+        cursor = db.readAllSongs(order);
+        cursor.moveToPosition(songPos);
+        song_id = cursor.getInt(0);
+
         addPlaylist.setOnClickListener(v ->
         {
-            db.addPlaylists(playlistName.getText().toString(), song_id);
-            refreshListview();
+            if(playlistName.getText().toString().isEmpty())
+            {
+                Toast.makeText(this, "Please fill all of the fields", Toast.LENGTH_SHORT).show();
+            }
+            else
+            {
+                db.addPlaylists(playlistName.getText().toString(), song_id);
+                refreshListview();
+            }
         });
 
         //OnClick event for items in listview

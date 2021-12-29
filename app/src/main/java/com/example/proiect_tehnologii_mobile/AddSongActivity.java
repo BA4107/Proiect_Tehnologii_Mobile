@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.Objects;
 
@@ -32,15 +33,23 @@ public class AddSongActivity extends AppCompatActivity
         // Button method
         addSong.setOnClickListener(v ->
         {
-            MyDatabaseHelper myDb = new MyDatabaseHelper(AddSongActivity.this);
-            myDb.addSongs(songTitle.getText().toString(), songArtist.getText().toString(),
-                    songType.getText().toString(), songLink.getText().toString());
+            if(songTitle.getText().toString().isEmpty() || songArtist.getText().toString().isEmpty()
+            || songType.getText().toString().isEmpty() || songLink.getText().toString().isEmpty())
+            {
+                Toast.makeText(this, "Please fill all of the fields", Toast.LENGTH_SHORT).show();
+            }
+            else
+            {
+                MyDatabaseHelper myDb = new MyDatabaseHelper(AddSongActivity.this);
+                myDb.addSongs(songTitle.getText().toString(), songArtist.getText().toString(),
+                        songType.getText().toString(), songLink.getText().toString());
 
-            // GoBack to previous activity
-            Intent intent = new Intent(AddSongActivity.this, MainActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent);
-            AddSongActivity.this.finish();
+                // GoBack to previous activity
+                Intent intent = new Intent(AddSongActivity.this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                AddSongActivity.this.finish();
+            }
         });
 
         // GoBack to MainActivity

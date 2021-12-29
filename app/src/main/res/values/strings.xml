@@ -43,4 +43,8 @@
     <string name="playlist_name">Playlist name</string>
     <string name="change_name">Change name</string>
     <string name="deleteplaylist">deletePlaylist</string>
+    <string name="title">Title</string>
+    <string name="artist">Artist</string>
+    <string name="genre">Genre</string>
+    <string name="strdefault">Default</string>
 </resources>

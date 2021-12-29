@@ -35,6 +35,6 @@ public class MainActivity extends AppCompatActivity
                 startActivity(new Intent(MainActivity.this, AllSongsActivity.class)));
 
         playlistsActivity.setOnClickListener(v ->
-                startActivity(new Intent(MainActivity.this, PlaylistsActivity.class)));
+                startActivity(new Intent(MainActivity.this, AllPlaylistsActivity.class)));
     }
 }

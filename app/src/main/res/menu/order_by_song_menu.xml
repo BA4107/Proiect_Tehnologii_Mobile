@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item
+        android:id="@+id/ordDefault"
+        android:title="@string/strdefault" />
+    <item android:id="@+id/ordTitle"
+        android:title="@string/title" />
+    <item android:id="@+id/ordArtist"
+        android:title="@string/artist" />
+    <item android:id="@+id/ordGenre"
+        android:title="@string/genre" />
+</menu>

@@ -1,7 +1,5 @@
 package com.example.proiect_tehnologii_mobile;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -9,14 +7,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class ModifySongActivity extends AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity;
+
+public class ModifySongPlaylistActivity extends AppCompatActivity
 {
     // Variables
     EditText songTitle, songArtist, songType, songLink;
     Button modSong;
     Cursor cursor;
+    String order, playlistName;
     int songPos;
-    String order;
 
     // OnCreate method
     @Override
@@ -29,6 +29,7 @@ public class ModifySongActivity extends AppCompatActivity
         Bundle extraModStuff = getIntent().getExtras();
         {
             songPos = extraModStuff.getInt("key");
+            playlistName = extraModStuff.getString("playlist");
             order = extraModStuff.getString("order");
         }
 
@@ -40,9 +41,9 @@ public class ModifySongActivity extends AppCompatActivity
         modSong = findViewById(R.id.btnModifySong);
 
         // Reading the selected song
-        MyDatabaseHelper db = new MyDatabaseHelper(ModifySongActivity.this);
-        cursor = db.readAllSongs(order);
-        cursor.moveToPosition(songPos);
+        MyDatabaseHelper db = new MyDatabaseHelper(ModifySongPlaylistActivity.this);
+        cursor = db.readSongsFromPlaylist(playlistName, order);
+        cursor.moveToPosition((int) songPos);
 
         songTitle.setText(cursor.getString(1));
         songArtist.setText(cursor.getString(2));
@@ -58,15 +59,15 @@ public class ModifySongActivity extends AppCompatActivity
             }
             else
             {
-                MyDatabaseHelper myDb = new MyDatabaseHelper(ModifySongActivity.this);
+                MyDatabaseHelper myDb = new MyDatabaseHelper(ModifySongPlaylistActivity.this);
                 myDb.updateData(cursor.getString(0), songTitle.getText().toString(),
                         songArtist.getText().toString(), songType.getText().toString(),
                         songLink.getText().toString());
-                Intent intent = new Intent(ModifySongActivity.this, GenericVideoActivity.class);
+                Intent intent = new Intent(ModifySongPlaylistActivity.this, GenericVideoPlaylistActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.putExtras(extraModStuff);
                 startActivity(intent);
-                ModifySongActivity.this.finish();
+                ModifySongPlaylistActivity.this.finish();
             }
         });
     }

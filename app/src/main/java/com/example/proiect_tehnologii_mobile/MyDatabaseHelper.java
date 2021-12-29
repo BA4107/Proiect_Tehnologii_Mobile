@@ -7,15 +7,8 @@ import android.database.MatrixCursor;
 import android.database.MergeCursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.widget.Toast;
 import androidx.annotation.Nullable;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
 
 public class MyDatabaseHelper extends SQLiteOpenHelper
 {
@@ -64,7 +57,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper
         // Creating the table "playlist"
         query = "CREATE TABLE " + TABLE_PLAYLIST + "(" +
                 COLUMN_ID_PLAY + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                COLUMN_NAME + " STRING, " +
+                COLUMN_NAME + " TEXT, " +
                 COLUMN_SPLAY_ID + " INTEGER);";
         db.execSQL(query);
     }
@@ -114,6 +107,32 @@ public class MyDatabaseHelper extends SQLiteOpenHelper
     {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT * FROM " + TABLE_SONG;
+
+        Cursor cursor = null;
+        if (db != null)
+        {
+            cursor = db.rawQuery(query, null);
+        }
+        return cursor;
+    }
+    // Method for selecting all the data from the database based on a criteria
+    public Cursor readAllSongs(String order)
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM " + TABLE_SONG;
+        // Sorting through the database
+        switch (order) {
+            case "title":
+                query = query + " ORDER BY " + COLUMN_TITLE;
+                break;
+            case "artist":
+                query = query + " ORDER BY " + COLUMN_ARTIST;
+                break;
+            case "genre":
+                query = query + " ORDER BY " + COLUMN_TYPE;
+                break;
+        }
+
         Cursor cursor = null;
         if (db != null)
         {
@@ -123,7 +142,8 @@ public class MyDatabaseHelper extends SQLiteOpenHelper
     }
 
     // Method for getting playlist names
-    public Cursor readAllPlaylists() {
+    public Cursor readAllPlaylists()
+    {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT * FROM " + TABLE_PLAYLIST + " GROUP BY " + COLUMN_NAME;
         Cursor cursor = null;
@@ -135,12 +155,14 @@ public class MyDatabaseHelper extends SQLiteOpenHelper
         return cursor;
     }
 
+    // Method for getting playlist names based on a criteria
+
     // Method for selecting all songs from a playlist
-    public Cursor readSongsFromPlaylist(String playlistName) {
+    public Cursor readSongsFromPlaylist(String playlistName, String order) {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT * FROM " + TABLE_PLAYLIST + " WHERE " +
                 COLUMN_NAME + " = '" + playlistName + "'";
-        ArrayList <Integer> playlistSongs = new ArrayList();
+        ArrayList<Integer> playlistSongs = new ArrayList();
 
         // Cursor for getting all the song ids in a list
         Cursor cursor = null;
@@ -155,7 +177,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper
         }
 
         // Complicated way to go through the list and add the song in a cursor but this is all I found
-        Cursor allSongs = readAllSongs();
+        Cursor allSongs = readAllSongs(order);
         MergeCursor playlistCursor = null;
         // Create a MatrixCursor filled with the rows you want to add.
         MatrixCursor matrixCursor = new MatrixCursor(new String[] {COLUMN_SONG_ID,
@@ -229,7 +251,4 @@ public class MyDatabaseHelper extends SQLiteOpenHelper
         db.execSQL("DELETE FROM " + TABLE_SONG);
         db.execSQL("DELETE FROM " + TABLE_PLAYLIST);
     }
-
-    // TODO Sorting songs method based by default/name/artist/genre
-    // TODO Dont allow empty input slots
 }
